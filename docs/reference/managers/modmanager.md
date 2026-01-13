@@ -1,5 +1,7 @@
-# ModManager
+# ScriptManager
 
-### `ModManager:GetMod(name)`
-  > Returns `Mod` or `nil`
+## WIP Bindings
+
+### `ScriptManager:FindMod(name)`
+  > Returns `Script` or `nil`
   

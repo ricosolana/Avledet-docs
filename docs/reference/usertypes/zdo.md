@@ -5,18 +5,20 @@ The bread-and-butter of Valhiem
 This class represents automatically synchronized networked objects 
 and states throughout Valheim gameplay. 
 
+## Instance Members
+
 ### `zdo.id`
   > Returns `ZDOID` | **readonly**
   
   > The id of the zdo
   
 ### `zdo.pos`
-  > Returns `Vector3f`
+  > Returns `Vec3f`
   
   > The position of the zdo
   
 ### `zdo.zone`
-  > Returns `Vector2i` | **readonly**
+  > Returns `Vec2i` | **readonly**
   
   > The current zone the zdo is contained within
   
@@ -26,61 +28,109 @@ and states throughout Valheim gameplay.
   > The rotation of the zdo
   
 ### `zdo.prefab`
-  > Returns `Prefab`
+  > Returns `Prefab` | **readonly**
+
+### `zdo.prefab_hash`
+  > Returns `number` | **readonly**
   
 ### `zdo.owner`
   > Returns `Int64`
   
-### `zdo:IsOwner(uuid)`
+### `zdo:is_owner(uuid)`
   > Returns `boolean`
   
   > Checks whether the specified uuid is the owner of the zdo
   
-### `zdo:IsLocal`
+### `zdo.mine`
   > Returns `boolean`
   
   > Whether the zdo is owned by the server
+
+  > Can set to true to locally claim ownership
+  ```lua
+  zdo.mine = true
+  -- zdo.owner is now the server
+
+  zdo.mine = false
+  -- zdo is now unclaimed (owner set to 0)
+  ```
   
-### `zdo:SetLocal`
-  > Set the server as the owner of the ZDO
-    
-### `zdo:HasOwner()`
-  > Returns `boolean`
+### `zdo.owned`
+  > Returns `boolean` | **readonly**
   
   > Returns whether this zdo has an owner
   
-### `zdo:Disown()`
-  > Sets the zdo's owner to 0
+### `zdo:disown()`
+  > Sets the zdos owner to none (0)
   
-### `zdo.dataRev`
-  > Returns the zdo's data revision number
+### `zdo.data_rev`
+  > Returns `number` | **readonly**
+
+  >The zdos data revision number
   
-### `zdo.ownerRev`
-  > Returns the zdo's owner revision number
+### `zdo.owner_rev`
+  > Returns `number` | **readonly**
+
+  > Returns the zdos owner revision number
   
-### `zdo.ticksCreated`
+### ~~`zdo.ticks_created`~~
+  > Returns `Int64`
+
   > Returns the time in ticks the zdo was created
   
-## Get / Set
+## Data Variables
 
+  ZDOs have Data Variables that are automatically synchronized between server 
+  and client. Data Variables are contained in key, value pairs within individual 
+  types. Can be read and written from using accessors below:
+
+### Getters
   > A zdo has several named getter and setter types
   
-  > `GetFloat`, `GetInt`, `GetLong`, `GetQuaternion`, `GetString`, 
-  `GetBytes`, `GetBool`, `GetZDOID`
+  > `get_float`, `get_int`, `get_long`, `get_quat`, `get_vec3f`, `get_string`, 
+    `get_bool`, `get_zdoid`
   ```lua
-  zdo:Get<>(hash, default)
-  zdo:Get<>(hash)
-  zdo:Get<>(name, default)
-  zdo:Get<>(name)
+  zdo:get_...(hash: number, default: any)
+  zdo:get_...(hash: number)
+  zdo:get_...(name: string, default: any)
+  zdo:get_...(name: string)
+  ```
+
+  >
+  ```lua
+  local t = zdo.get_float("plantTime", 200)
+  -- if "plantTime" does not exist, 200 is returned
+  ```
+
+### Setters  
+  > `set_float`, `set_int`, `set`
+  ```lua
+  zdo:set_...(hash: number, value: any)
+  zdo:set_...(name: string, value: any)
   ```
   
-  > `SetFloat`, `SetInt`, `Set`
-  ```lua
-  zdo:Set<>(hash, value)
-  zdo:Set<>(name, value)  
-  ```
-  
-  > The overload `Set(...)` accepts any of the above non-numeric types
+  > The overload `set(...)` accepts any of the above non-numeric types
 
   > Any usage of a long (64-bit integer) utilizes a `Int64` and is overloaded
-    by `Set(...)`
+    by `set(...)`
+
+  >
+  ```lua
+  zdo:set("RightBackItem", "chestplate")
+  
+  -- the above is equal to
+  zdo:set(VUtils.String.GetStableHashCode("RightBackItem"), "chestplate")
+
+  -- internally, all keys are hashed to 32-bit numbers. 
+  -- the key is effectively lost, but obtainable through reverse lookup
+  ```
+
+## ZDO <-> ZDO Connection
+
+### `zdo:set_connection(type: ConnectorType, zdoid)`
+  > Sets the connection pair for this ZDO
+
+### `zdo:get_connection(type: ConnectorType)`
+  > Returns `ZDOID`
+
+  > The conneciton pair for the ZDO

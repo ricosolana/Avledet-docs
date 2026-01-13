@@ -2,107 +2,111 @@
 
 A vector consisting of two floating point components
 
-### `Vector2f.new()`
-  > Returns `Vector2`
+## Class Members
 
-  > Constructs a Vector2 equivalent to Vector2.ZERO
+### `Vec2f.new()`
+  > Returns `Vec2f`
 
-### `Vector2f.new(x, y, z)`
-  > Returns `Vector2`
+  > Constructs a Vec2f equivalent to Vec2f.ZERO
 
-  > Constructs a Vector2 from x, y, and z parameters
+### `Vec2f.new(x, y)`
+  > Returns `Vec2f`
 
-### `Vector2f.ZERO`
+  > Constructs a Vec2f from x and y parameters
+
+### `Vec2f.ZERO`
   > Returns `Vector2` | **readonly**
   
   > A zero vector (0, 0)
 
-### `vector2f.x`
+## Instance Members
+
+### `vec2f.x`
   > Returns `number`
 
   > The x component of the vector
 
-### `vector2f.y`
+### `vec2f.y`
   > Returns `number`
 
   > The y component of the vector
 
-### `vector2f.magnitude`
+### `vec2f.magnitude`
   > Result: `number` | **readonly**
 
   > The length of the vector
   
-### `vector2f.sqMagnitude`
+### `vec2f.sq_magnitude`
   > Result: `number` | **readonly**
 
   > The squared length of the vector
 
-### `vector2f.normal`
-  > Result: `Vector2f` | **readonly**
+### `vec2f.normal`
+  > Result: `Vec2f` | **readonly**
   
   > Returns the unit normal vector of this
 
-### `vector2f:Distance(other)`
+### `vec2f:distance_to(other: Vec2f)`
   > Returns `number`
 
   > The distance another vector and this
 
-### `vector2f:SqDistance(other)`
+### `vec2f:sq_distance_to(other: Vec2f)`
   > Result: `number`
 
   > The squared distance another vector and this
 
-### `vector2f:__add()`
-  > Returns `Vector2`
+### `vec2f:__add()`
+  > Returns `Vec2f`
 
   > Adds together two vectors
   
   > 
   ```lua
-  local a = Vector2.new(1, 5)
-  local b = Vector2.new(2, -1)
+  local a = Vec2f.new(1, 5)
+  local b = Vec2f.new(2, -1)
   
   -- (3, 4)
   local result = a + b
   ```
 
-### `vector2f:__sub()`
-  > Returns `Vector2`
+### `vec2f:__sub()`
+  > Returns `Vec2f`
 
   > Subtracts two vectors
   
   > 
   ```lua
-  local a = Vector2.new(6, -1)
-  local b = Vector2.new(-3, -2)
+  local a = Vec2f.new(6, -1)
+  local b = Vec2f.new(-3, -2)
   
   -- (9, 1)
   local result = a - b
   ```
   
-### `vector2f:__mul()`
-  > Returns `Vector2`
+### `vec2f:__mul()`
+  > Returns `Vec2f`
 
   > Multiplies two vectors
   
   > 
   ```lua
-  local a = Vector2.new(1, 2)
-  local b = Vector2.new(4, 5)
+  local a = Vec2f.new(1, 2)
+  local b = Vec2f.new(4, 5)
   
   -- (4, 10)
   local result = a * b
   ```
 
-### `vector2f:__div()`
-  > Returns `Vector2`
+### `vec2f:__div()`
+  > Returns `Vec2f`
 
   > Divides two vectors
 
   > 
   ```lua
-  local a = Vector2.new(6, 4)
-  local b = Vector2.new(3, 2)
+  local a = Vec2f.new(6, 4)
+  local b = Vec2f.new(3, 2)
   
   -- (2, 2)
   local result = a / b

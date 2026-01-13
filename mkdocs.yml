@@ -1,6 +1,6 @@
 site_name: Valhalla
-#site_url: https://PeriodicSeizures.github.io/Valhalla/
-repo_name: PeriodicSeizures/Valhalla
+#site_url: https://ricosolana.github.io/Valhalla/
+repo_name: ricosolana/Valhalla
 repo_url: https://github.com/PeriodicSeizures/Valhalla
 
 #nav:
@@ -65,6 +65,7 @@ theme:
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
+    - content.tooltips
   palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
@@ -91,6 +92,7 @@ extra:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/hint.min.css
 
 markdown_extensions:
   - toc:
@@ -110,10 +112,17 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.mark
+  - pymdownx.caret
+  - pymdownx.tilde
   - attr_list
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+# apparently deprecated
+#  - pymdownx.emoji:
+#      emoji_index: !!python/name:materialx.emoji.twemoji
+#      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+plugins:
+  - tooltips
+  - search
 
 copyright: |
-  &copy; 2023 <a href="https://github.com/PeriodicSeizures"  target="_blank" rel="noopener">Ricardo Solana</a>
+  &copy; 2025 <a href="https://github.com/ricosolana" target="_blank" rel="noopener">Ricardo Solana</a>

@@ -1,12 +1,14 @@
 # Peer
 
-### `peer.visibleOnMap`
+## Instance Members
+
+### `peer.marker`
   > Returns `boolean`
   
 ### `peer.admin`
   > Returns `boolean`
 
-### `peer.characterID`
+### `peer.character_id`
   > Returns `ZDOID` | **readonly**
   
 ### `peer.name`
@@ -17,7 +19,7 @@
   
   > The occasionally updated position of the Peer
   
-### `peer.uuid`
+### ~~`peer.uuid`~~
   > Returns `Int64` | **readonly**
   
 ### `peer.socket`
@@ -25,38 +27,40 @@
   
 ### `peer.zdo`
   > Returns `ZDO` | **readonly**
-  
-### `peer:Kick()
 
-### `peer:ChatMessage(msg)`
+  > Returns `nil` if player hasnt completed login, or during death.
+  
+### `peer:kick()`
+
+### `peer:chat_message(message: string)`
   > Send a basic chat message to the Peer
   
-### `peer:ConsoleMessage(msg)`
+### `peer:console_message(message: string)`
   > Send a console message to the Peer
   
-### `peer:CornerMessage(msg)`
+### `peer:corner_message(message: string)`
   > Send a top-left screen message to the Peer
   
-### `peer:CenterMessage(msg)`
+### `peer:center_message(message: string)`
   > Send a top screen message to the Peer
   
-### `peer:Teleport(pos, rot, ?animate)`
+### `peer:teleport(pos: Vec3f, rot: Quaternion, animate: boolean)`
   > Slowly teleports the player to a location.
   
   > If `animate` is set, teleports the player with a portal overlay
 
-### `peer:Teleport(pos, rot)`
+### `peer:teleport(pos: Vec3f, rot: Quaternion)`
   > Slowly teleports the player to a location
   
   > Calls peer:Teleport(...) with `animate` set to false
   
-### `peer:Disconnect()`
+### `peer:disconnect()`
   > Disconnect the peer from the server
   
   > The connection will linger for a while, but the Peer will be disposed
   of during the next frame
   
-### `peer:InvokeSelf(hash, dataReader&)`
+### `peer:invoke_self(hash, dataReader)`
   > Emulates an invoke call normally performed by the remote Peer
   
   > Expects a numeric hash for the method name

@@ -1,26 +1,26 @@
-# Mod
+# Script
 
-### `mod.name`
+### `script.name`
   > Returns `string`
   
-  > The name of the mod
+  > The name of the script
   
-### `mod.version`
+### `script.version`
   > Returns `string`
   
-  > The version of the mod
+  > The version of the script
   
-### `mod.apiVersion`
+### `script.api_version`
   > Returns `string`
   
-  > The api version of the mod
+  > The api version of the script
   
-### `mod.description`
+### `script.description`
   > Returns `string`
   
-  > The description of the mod
+  > The description of the script
   
-### `mod.authors`
-  > Returns `container<string>`
+### `script.authors`
+  > Returns `sequence<string>`
   
-  > The authors of the mod
+  > The authors of the script

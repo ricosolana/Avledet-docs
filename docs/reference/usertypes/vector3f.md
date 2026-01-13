@@ -1,113 +1,113 @@
-# Vector3f
+# Vec3f
 
 A vector consisting of three floating point components
 
-### `Vector3f.new()`
-  > Returns `Vector3f`
+### `Vec3f.new()`
+  > Returns `Vec3f`
 
-  > Constructs a Vector3f equivalent to Vector3f.ZERO
+  > Constructs a Vec3f equivalent to Vec3f.ZERO
 
-### `Vector3f.new(x, y, z)`
-  > Returns `Vector3f`
+### `Vec3f.new(x, y, z)`
+  > Returns `Vec3f`
 
-  > Constructs a Vector3f from x, y, and z parameters
+  > Constructs a Vec3f from x, y, and z parameters
 
-### `Vector3f.ZERO`
-  > Returns `Vector3f`
+### `Vec3f.ZERO`
+  > Returns `Vec3f`
   
   > A zero vector (0, 0, 0)
 
-### `vector3f.x`
+### `vec3f.x`
   > Returns `number`
 
   > The x component of the vector
 
-### `vector3f.y`
+### `vec3f.y`
   > Returns `number`
 
   > The y component of the vector
 
-### `vector3f.z`
+### `vec3f.z`
   > Returns `number`
 
   > The z component of the vector
   
-### `vector3f.magnitude`
+### `vec3f.magnitude`
   > Returns `number` | **readonly**
 
   > The length of the vector
   
-### `vector3f.sqMagnitude`
+### `vec3f.sq_magnitude`
   > Returns `number` | **readonly**
 
   > The squared length of the vector
 
-### `vector3f.normal`
-  > Result: `Vector3f` | **readonly**
+### `vec3f.normal`
+  > Result: `Vec3f` | **readonly**
   
   > Returns the unit normal vector of this
 
-### `vector3f:Distance(other)`
+### `vec3f:distance_to(other: Vec3f)`
   > Returns `number`
 
   > The distance another vector and this
 
-### `vector3f:SqDistance(other)`
+### `vec3f:sq_distance_to(other: Vec3f)`
   > Returns `number`
 
   > The squared distance another vector and this
 
-### `vector3f:__add()`
-  > Returns `Vector3f`
+### `vec3f:__add()`
+  > Returns `Vec3f`
 
   > Adds together two vectors
   
   > 
   ```lua
-  local a = Vector3f.new(1, 0.5, 1)
-  local b = Vector3f.new(2, -1, -2)
+  local a = Vec3f.new(1, 0.5, 1)
+  local b = Vec3f.new(2, -1, -2)
   
   -- (3, -0.5, -1)
   local result = a + b
   ```
 
-### `vector3f:__sub()`
-  > Returns `Vector3f`
+### `vec3f:__sub()`
+  > Returns `Vec3f`
 
   > Subtracts two vectors
 
   > 
   ```lua
-  local a = Vector3f.new(6, -2.3, -4)
-  local b = Vector3f.new(-3, -2, 2)
+  local a = Vec3f.new(6, -2.3, -4)
+  local b = Vec3f.new(-3, -2, 2)
   
   -- (9, -0.3, -6)
   local result = a - b
   ```
 
-### `vector3f:__mul()`
-  > Returns `Vector3f`
+### `vec3f:__mul()`
+  > Returns `Vec3f`
 
   > Multiplies two vectors
   
   > 
   ```lua
-  local a = Vector3f.new(1, 2, 3)
-  local b = Vector3f.new(4, 5, 6)
+  local a = Vec3f.new(1, 2, 3)
+  local b = Vec3f.new(4, 5, 6)
   
   -- (4, 10, 18)
   local result = a * b
   ```
 
-### `vector3f:__div()`
-  > Returns `Vector3f`
+### `vec3f:__div()`
+  > Returns `Vec3f`
 
   > Divides two vectors
 
   > 
   ```lua
-  local a = Vector3f.new(6, 4, 10)
-  local b = Vector3f.new(3, 2, 2)
+  local a = Vec3f.new(6, 4, 10)
+  local b = Vec3f.new(3, 2, 2)
   
   -- (2, 2, 5)
   local result = a / b

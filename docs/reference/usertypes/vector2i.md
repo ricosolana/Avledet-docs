@@ -1,108 +1,112 @@
-# Vector2i
+# Vec2i
 
 A vector consisting of two integer components
 
-### `Vector2i.new()`
-  > Returns `Vector2i`
+## Class Members
 
-  > Constructs a Vector2i equivalent to Vector2i.ZERO
+### `Vec2i.new()`
+  > Returns `Vec2i`
 
-### `Vector2i.new(x, y, z)`
-  > Returns `Vector2i`
+  > Constructs a Vec2i equivalent to Vec2i.ZERO
 
-  > Constructs a Vector2i from x, y, and z parameters
+### `Vec2i.new(x, y, z)`
+  > Returns `Vec2i`
 
-### `Vector2i.ZERO`
-  > Returns `Vector2i` | **readonly**
+  > Constructs a Vec2i from x and y parameters
+
+### `Vec2i.ZERO`
+  > Returns `Vec2i` | **readonly**
   
   > A zero vector (0, 0)
 
-### `vector2i.x`
+## Instance Members
+
+### `vec2i.x`
   > Returns `number`
 
   > The x component of the vector
 
-### `vector2i.y`
+### `vec2i.y`
   > Returns `number`
 
   > The y component of the vector
 
-### `vector2i.magnitude`
+### `vec2i.magnitude`
   > Result: `number` | **readonly**
 
   > The length of the vector
   
-### `vector2i.magnitude`
+### `vec2i.magnitude`
   > Result: `number` | **readonly**
 
   > The squared length of the vector
 
-### `vector2i.normal`
-  > Result: `Vector2i` | **readonly**
+### `vec2i.normal`
+  > Result: `Vec2i` | **readonly**
   
   > Returns the unit normal vector of this
 
-### `vector2i:Distance(other)`
+### `vec2i:distance_to(other: Vec2i)`
   > Returns `number`
 
   > The distance another vector and this
 
-### `vector2i:SqDistance(other)`
+### `vec2i:sq_distance_to(other: Vec2i)`
   > Result: `number`
 
   > The squared distance another vector and this
 
-### `vector2i:__add()`
-  > Returns `Vector2i`
+### `vec2i:__add()`
+  > Returns `Vec2i`
 
   > Adds together two vectors
   
   > 
   ```lua
-  local a = Vector2i.new(1, 5)
-  local b = Vector2i.new(2, -1)
+  local a = Vec2i.new(1, 5)
+  local b = Vec2i.new(2, -1)
   
   -- (3, 4)
   local result = a + b
   ```
 
-### `vector2i:__sub()`
-  > Returns `Vector2i`
+### `vec2i:__sub()`
+  > Returns `Vec2i`
 
   > Subtracts two vectors
   
   > 
   ```lua
-  local a = Vector2i.new(6, -1)
-  local b = Vector2i.new(-3, -2)
+  local a = Vec2i.new(6, -1)
+  local b = Vec2i.new(-3, -2)
   
   -- (9, 1)
   local result = a - b
   ```
   
-### `vector2i:__mul()`
-  > Returns `Vector2i`
+### `vec2i:__mul()`
+  > Returns `Vec2i`
 
   > Multiplies two vectors
   
   > 
   ```lua
-  local a = Vector2i.new(1, 2)
-  local b = Vector2i.new(4, 5)
+  local a = Vec2i.new(1, 2)
+  local b = Vec2i.new(4, 5)
   
   -- (4, 10)
   local result = a * b
   ```
 
-### `vector2i:__div()`
-  > Returns `Vector2i`
+### `vec2i:__div()`
+  > Returns `Vec2i`
 
   > Divides two vectors
 
   > 
   ```lua
-  local a = Vector2i.new(6, 4)
-  local b = Vector2i.new(3, 2)
+  local a = Vec2i.new(6, 4)
+  local b = Vec2i.new(3, 2)
   
   -- (2, 2)
   local result = a / b

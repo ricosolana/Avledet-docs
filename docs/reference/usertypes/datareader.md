@@ -1,130 +1,127 @@
-# DataReader
+# Reader
 
 A deserializing utility. Is essentially a wrapper around a `Bytes` object
 
 Note: Any of the Read...() methods below will throw if the length is exceeded. 
 Objects which start with a 32-bit signed size will throw if the size is negative.
 
-### `DataReader.new(bytes)`
-  > Returns `DataReader`
+## Class Members
 
-  > Constructs a DataReader using a specified byte buffer
+### `Reader.new(bytes)`
+  > Returns `Reader`
 
-  > In the C++ implementation, this constructor accepts a Bytes reference.
-  I am not fully sure how this will work within Lua if passed an rvalue 
-  (do those exist?).
+  > Constructs a Reader using a specified byte buffer
+  
+## Instance Members
 
-  > This object must not exist beyond the scope of its
-  underlying vector. Doing so will cause segfaults.
-  
-### `dataReader.provider`
-  > Returns `Bytes&`
-  
-  > The underlying byte buffer of the reader
-  
-### `dataReader.pos`
+### `reader.pos`
   > Returns `number`
   
   > The current position of the reader
   
-  > Will throw if set position is invalid (negative or outside bounds)
+  > Will throw if set position is invalid
   
-### `dataReader:ReadBool()`
+### `reader:seek(advance: number)`  
+  > Seek ahead or backwards (if negative) in the stream
+  
+  > Will throw if final position is invalid.
+
+### `reader:read_bool()`
   > Returns `boolean`
   
   > Reads a boolean from the stream and advances the position by `1`
   
-### `dataReader:ReadString()`
+### `reader:read_string()`
   > Returns `string`
   
   > Reads a string from the stream and advances the position by `4 + <size>`
 
-### `dataReader:ReadStrings()`
-  > Returns `strings`
+### `reader:read_strings()`
+  > Returns `container<string>`
   
   > Reads several strings from the stream and advances the position by `4 + <count>`
   
-### `dataReader:ReadBytes()`
+### `reader:read_bytes()`
   > Returns `Bytes`
   
   > Reads a byte buffer from the stream and advances the position by `4 + <size>`
   
-### `dataReader:ReadZDOID()`
+### `reader:read_zdoid()`
   > Returns `ZDOID`
   
   > Reads a ZDOID from the stream and advances the position by `12`
   
-### `dataReader:ReadVector3()`
+### `reader:read_vec3f()`
   > Returns `Vector3`
   
   > Reads a Vector3 from the stream and advances the position by `12`
   
-### `dataReader:ReadVector2i()`
+### `reader:read_vec2i()`
   > Returns `Vector2i`
   
   > Reads a Vector2i from the stream and advances the position by `8`
   
-### `dataReader:ReadQuaternion()`
+### `reader:read_quat()`
   > Returns `Quaternion`
   
   > Reads a Quaternion from the stream and advances the position by `16`
   
-### `dataReader:ReadProfile()`
+### ~~`reader:ReadProfile()`~~
   > Returns `UserProfile`
   
   > Reads a UserProfile from the stream and advances the position by `16`
   
-### `dataReader:ReadInt8()`
+### `reader:read_s8()`
   > Returns `number`
   
   > Reads an 8-bit signed integer from the stream and advances the position by `1`
   
-### `dataReader:ReadInt16()`
+### `reader:read_s16()`
   > Returns `number`
   
   > Reads a 16-bit signed integer from the stream and advances the position by `2`
   
-### `dataReader:ReadInt32()`
+### `reader:read_s32()`
   > Returns `number`
   
   > Reads a 32-bit signed integer from the stream and advances the position by `4`
   
-### `dataReader:ReadInt64()`
+### `reader:read_s64()`
   > Returns `Int64`
   
   > Reads a 64-bit signed integer from the stream and advances the position by `8`
   
-### `dataReader:ReadUInt8()`
+### `reader:read_u8()`
   > Returns `number`
   
   > Reads an 8-bit unsigned integer from the stream and advances the position by `1`
   
-### `dataReader:ReadUInt16()`
+### `reader:read_u16()`
   > Returns `number`
   
   > Reads an 16-bit unsigned integer from the stream and advances the position by `2`
   
-### `dataReader:ReadUInt32()`
+### `reader:read_u32()`
   > Returns `number`
   
   > Reads an 32-bit unsigned integer from the stream and advances the position by `4`
   
-### `dataReader:ReadUInt64()`
+### `reader:read_u64()`
   > Returns `UInt64`
   
   > Reads an 64-bit unsigned integer from the stream and advances the position by `8`
   
-### `dataReader:ReadFloat()`
+### `reader:read_float()`
   > Returns `number`
   
   > Reads a 32-bit floating point number from the stream and advances the position by `4`
   
-### `dataReader:ReadDouble()`
+### `reader:read_double()`
   > Returns `number`
   
   > Reads a 64-bit floating point number from the stream and advances the position by `8`
   
-### `dataReader:ReadChar()`
+### `reader:read_char16()`
   > Returns `number`
   
   > Reads a variable length UTF8 character from the stream and advances the position by a max of `3`

@@ -1,18 +1,18 @@
-# Valhalla
+# Avledet
 
-### `Valhalla.version`
+### `Avledet.version`
   > Returns `string`
 
-  > Valheim version: `0.214.300`
+  > Valheim version: `0.221.6`
   
-### `Valhalla.delta`
+### `Avledet.delta`
   > Returns `number` | **readonly**
   
   > The delta time for this frame
   
   > Equivalent to Unity `Time.deltaTime`
   
-### `Valhalla.id`
+### `Avledet.id`
   > Returns `Int64` | **readonly**
 
   > The randomly generated server id.
@@ -20,44 +20,51 @@
   > Used primarily for determining ZDO
   ownership throughout gameplay.
   
-### `Valhalla.nanos`
+### `Avledet.nanos`
   > Returns `Int64` | **readonly**
 
   > The time in nanoseconds
   
-### `Valhalla.time`
+### `Avledet.time`
   > Returns `number` | **readonly**
   
   > The time in seconds
   
   > Equivalent to Unity `Time.time`
 
-### `Valhalla.worldTime`
+### `Avledet.time_multiplier`
+  > Returns `number` | **readonly**
+  
+  > The rate at which the server time advances
+  
+  > I cant remember why I created this member, so use with caution
+
+### `Avledet.world_time`
   > Returns `number`
 
   > The in-game time which determines the day/night cycle
 
-### `Valhalla.worldTimeMultiplier`
+### `Avledet.world_time_multiplier`
   > Returns `number`
 
   > The rate at which the worldTime advances. Setting to a value less than 1 will slow the rate 
   (might have weird client time-skip effects). Setting to a values greater than 1 will speed up the ingame time.
   
   > A simple use-case of this is the ingame-sleep time skip, which rapidly progresses the time until morning. See the 
-  [Sleep mod](https://github.com/PeriodicSeizures/Valhalla/blob/f89bdaf3f34826576ba9befb6a74a934ed4f3e88/data/mods/Sleep/Sleep.lua#L77)
+  [Sleep mod](https://github.com/PeriodicSeizures/Avledet/blob/f89bdaf3f34826576ba9befb6a74a934ed4f3e88/data/mods/Sleep/Sleep.lua#L77)
   for more information regarding usages.
 
-### `Valhalla.worldTicks`
+### `Avledet.world_ticks`
   > Returns `number` | **readonly**
 
-  > Similar to worldTime but in C# `DateTime.Ticks`
+  > Similar to world_time but in the scale of C# `DateTime.Ticks`
 
-### `Valhalla.day`
+### `Avledet.day`
   > Returns `number`
   
-  > The current integer day
+  > The current day in the world as an integer
 
-### `Valhalla.timeOfDay`
+### `Avledet.time_of_day`
   > Returns `number`
   
   > The current relative time of day. 
@@ -70,61 +77,61 @@
   > | Day           | 270         | 900          |
   > | Afternoon     | 900         | 1530         |
   > | Night         | 1530        | 240          |
-  
-  
 
-### `Valhalla.isMorning`
+  > Can set time of day, which will keep the current day, but switch around the time.
+  
+### `Avledet.is_morning`
   > Returns `boolean` | **readonly**
   
   > Whether the current time is morning
 
-### `Valhalla.isDay`
+### `Avledet.is_day`
   > Returns `boolean` | **readonly**
 
   > Whether the current time is day
 
-### `Valhalla.isAfternoon`
+### `Avledet.is_afternoon`
   > Returns `boolean` | **readonly**
   
   > Whether the current time is the afternoon
 
-### `Valhalla.isNight`
+### `Avledet.is_night`
   > Returns `boolean` | **readonly**
   
   > Whether the current time is night
 
-### `Valhalla.tomorrowMorning`
+### `Avledet.tomorrow_morning`
   > Returns `number` | **readonly**
   
   > The worldTime for the morning time pertaining to the current `day` + 1
 
-### `Valhalla.tomorrow`
+### `Avledet.tomorrow`
 > Returns `number` | **readonly**
 
   > The worldTime for the day time pertaining to the current `day` + 1
 
-### `Valhalla.tomorrowAfternoon`
+### `Avledet.tomorrow_afternoon`
 > Returns `number` | **readonly**
 
   > The worldTime for the afternoon time pertaining to the current `day` + 1
 
-### `Valhalla.tomorrowNight`
+### `Avledet.tomorrow_night`
 > Returns `number` | **readonly**
 
   > The worldTime for the night time pertaining to the current `day` + 1
 
-### `Valhalla:Subscribe(name, function)`
+### `Avledet:subscribe(name, cb_func)`
   > Subscribe to a game event
   
   > The passed function will be called when the event fires
   
   >
   ```lua
-  Valhalla:Subscribe('Enable', function()
+  Avledet:subscribe('Enable', function()
     -- Will be dispatched only once when all plugins are loaded
   end)
   
-  Valhalla:Subscribe('RouteInAll', 'ChatMessage', function(peer, targetZdoid, bytes)
+  Avledet:subscribe('RouteInAll', 'ChatMessage', function(peer, targetZdoid, bytes)
     -- Will be dispatched whenever a peer calls RoutedRpc that is aimed towards all online peers
   end)
   ```
@@ -133,23 +140,23 @@
   
   > | Method            | Dispatched                                                                                                        | Passthrough                           | Example                                                                                       |
   > | :----------       | :------------------                                                                                               | :---------------:                     | :-------                                                                                      |
-  > | `Enable`          | Server start                                                                                                      | :material-close:                      | `Valhalla:Subscribe('Enable', function() end)`                                                |
-  > | `Disable`         | Server stop                                                                                                       | :material-close:                      | `Valhalla:Subscribe('Disable', function() end)`                                               |
-  > | `Update`          | Server update loop                                                                                                | :material-close:                      | `Valhalla:Subscribe('Update', function() end)`                                                |
-  > | `Periodic`        | Once every second                                                                                                 | :material-close:                      | `Valhalla:Subscribe('Periodic', function() end)`                                              |
-  > | `Connect`         | Any peer connects                                                                                                 | `Peer`                                | `Valhalla:Subscribe('Connect', function(peer) end)`                                           |
-  > | `Disconnect`      | Any peer disconnects                                                                                              | `Peer`                                | `Valhalla:Subscribe('Disconnect', function(peer) end)`                                        |
-  > | `Join`            | Valid peer joins                                                                                                  | `Peer`                                | `Valhalla:Subscribe('Join', function(peer) end)`                                              |
-  > | `Quit`            | Valid peer quits                                                                                                  | `Peer`                                | `Valhalla:Subscribe('Quit', function(peer) end)`                                              |
-  > | `RpcIn`           | :material-monitor: :material-arrow-right: :material-server:                                                       | `Peer`, `...`                         | `Valhalla:Subscribe('RpcIn', 'PeerInfo', function(peer, bytes) end)`                          |
-  > | `RpcOut`          | :material-server: :material-arrow-right: :material-monitor:                                                       | `Peer`, `...`                         | `Valhalla:Subscribe('RpcOut', 'PeerInfo', function(peer, bytes) end)`                         |
-  > | `RouteIn`         | :material-monitor: :material-arrow-right: :material-server:                                                       | `Peer`, `ZDOID`, `...`                | `Valhalla:Subscribe('RouteIn', 'SetGlobalKey', function(peer, targetZdoid, key) end)`               |  
-  > | `RouteInAll`      | :material-monitor: :material-arrow-right: :material-server: :material-arrow-right: :material-monitor-multiple:    | `Peer`, `ZDOID`, `...`                | `Valhalla:Subscribe('RouteInAll', 'DestroyZDO', function(peer, targetZdoid, bytes) end)`            |  
-  > | `RouteOut`        | :material-server: :material-arrow-right: :material-monitor:                                                       | `Peer`, `ZDOID`, `...`                | `Valhalla:Subscribe('RouteOut', 'SleepStart', function(peer, targetZdoid) end)`                     |  
-  > | `RouteOutAll`     | :material-server: :material-arrow-right: :material-monitor-multiple:                                              | `ZDOID`, `...`                        | `Valhalla:Subscribe('RouteOutAll', 'GlobalKeys', function(targetZdoid, keys) end)`                  |  
-  > | `Routed`          | :material-monitor: :material-arrow-right: :material-server: :material-arrow-right: :material-monitor:             | `Peer-src` `Peer-dst`, `ZDOID`, `...` | `Valhalla:Subscribe('RouteOutAll', 'AddItem', function(srcpeer, dstpeer, targetZdoid, item) end)`   |  
-  > | `Send`            | Server sends packet                                                                                               | `Socket`, `Bytes`                     | `Valhalla:Subscribe('Send', function(socket, bytes) end)`                                     |  
-  > | `Recv`            | Server receives packet                                                                                            | `Socket`, `Bytes`                     | `Valhalla:Subscribe('Recv', function(socket, bytes) end)`                                     |  
+  > | `Enable`          | Server start                                                                                                      | :material-close:                      | `Avledet:subscribe('Enable', function() end)`                                                |
+  > | `Disable`         | Server stop                                                                                                       | :material-close:                      | `Avledet:subscribe('Disable', function() end)`                                               |
+  > | `Update`          | Server update loop                                                                                                | :material-close:                      | `Avledet:subscribe('Update', function() end)`                                                |
+  > | `Periodic`        | Once every second                                                                                                 | :material-close:                      | `Avledet:subscribe('Periodic', function() end)`                                              |
+  > | `Connect`         | Any peer connects                                                                                                 | `Peer`                                | `Avledet:subscribe('Connect', function(peer) end)`                                           |
+  > | `Disconnect`      | Any peer disconnects                                                                                              | `Peer`                                | `Avledet:subscribe('Disconnect', function(peer) end)`                                        |
+  > | `Join`            | Valid peer joins                                                                                                  | `Peer`                                | `Avledet:subscribe('Join', function(peer) end)`                                              |
+  > | `Quit`            | Valid peer quits                                                                                                  | `Peer`                                | `Avledet:subscribe('Quit', function(peer) end)`                                              |
+  > | `RpcIn`           | :material-monitor: :material-arrow-right: :material-server:                                                       | `Peer`, `...`                         | `Avledet:subscribe('RpcIn', 'PeerInfo', function(peer, bytes) end)`                          |
+  > | `RpcOut`          | :material-server: :material-arrow-right: :material-monitor:                                                       | `Peer`, `...`                         | `Avledet:subscribe('RpcOut', 'PeerInfo', function(peer, bytes) end)`                         |
+  > | `RouteIn`         | :material-monitor: :material-arrow-right: :material-server:                                                       | `Peer`, `ZDOID`, `...`                | `Avledet:subscribe('RouteIn', 'SetGlobalKey', function(peer, targetZdoid, key) end)`               |  
+  > | `RouteInAll`      | :material-monitor: :material-arrow-right: :material-server: :material-arrow-right: :material-monitor-multiple:    | `Peer`, `ZDOID`, `...`                | `Avledet:subscribe('RouteInAll', 'DestroyZDO', function(peer, targetZdoid, bytes) end)`            |  
+  > | `RouteOut`        | :material-server: :material-arrow-right: :material-monitor:                                                       | `Peer`, `ZDOID`, `...`                | `Avledet:subscribe('RouteOut', 'SleepStart', function(peer, targetZdoid) end)`                     |  
+  > | `RouteOutAll`     | :material-server: :material-arrow-right: :material-monitor-multiple:                                              | `ZDOID`, `...`                        | `Avledet:subscribe('RouteOutAll', 'GlobalKeys', function(targetZdoid, keys) end)`                  |  
+  > | `Routed`          | :material-monitor: :material-arrow-right: :material-server: :material-arrow-right: :material-monitor:             | `Peer-src` `Peer-dst`, `ZDOID`, `...` | `Avledet:subscribe('RouteOutAll', 'AddItem', function(srcpeer, dstpeer, targetZdoid, item) end)`   |  
+  > | `Send`            | Server sends packet                                                                                               | `Socket`, `Bytes`                     | `Avledet:subscribe('Send', function(socket, bytes) end)`                                     |  
+  > | `Recv`            | Server receives packet                                                                                            | `Socket`, `Bytes`                     | `Avledet:subscribe('Recv', function(socket, bytes) end)`                                     |  
   > | `POST`            | Event-modifier to run after the primary-event
   
   > Most of the events above are prefix methods like in Harmony. Similarly, there is a `POST` event that can be 
@@ -159,7 +166,7 @@
   >
   ```lua
   -- Will be ran after the internal PeerInfo has taken place
-  Valhalla:Subscribe('RpcIn', 'PeerInfo' 'POST', function(peer, bytes) end)
+  Avledet:subscribe('RpcIn', 'PeerInfo' 'POST', function(peer, bytes) end)
   ```
   
-  > Handlers using `POST` cannot be cancelled unless otherwise stated (because what would be cancelled after everything has already happened?).
+  > Handlers using `POST` cannot be cancelled unless otherwise stated (because what would be the point?).

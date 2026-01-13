@@ -2,32 +2,47 @@
 
 The socket structure used throughout the game for Rpc-pings and Rpc invocations
     
-### `socket.connected`
-  > Returns `boolean` | **readonly**
-  
-  > Whether the socket is connected or disconnected
-  
+This object is non-constructible.
+
+## Instance Members
+
+### `socket:close(flush: bool)`
+  > Close the socket and/or linger a short time (3s) for unsent packets.
+
 ### `socket.address`
   > Returns `string` | **readonly**
   
-  > The address of the remote socket
-  
+  > The address of the remote socket.
+
 ### `socket.host`
   > Returns `string` | **readonly**
   
-  > The hostname of the remote socket
+  > The unique hostname for the remote socket.
   
-  > This value will always be unique for any given connection, 
-  and can be safely used to differentiate connections.
-  
-### `socket.sendQueueSize`
+### `socket.send_queue_size`
   > Returns `number` | **readonly**
   
   > The total size of outgoing data in bytes. 
+
+### `socket.status`
+  > Returns `Status` | **readonly**
   
-### `socket:Close(flush)`
-  > Closes the socket immediately or lingers for a short time
+  > The connection status of the socket.
+
+### `socket:send(packet: Bytes)`
+  > Send the supplied packet to the remote host.
+
+### `socket.ping`
+  > Returns `number` | **readonly**
   
-  > If flush is true:
-    incoming data is discarded
-    outgoing data is sent for the next `1` to `3` seconds
+  > The one-way latency of the connection measured in whole milliseconds.
+
+### `socket.quality`
+  > Returns `local: number`, `remote: number` | **readonly**
+  
+  > The local and remote quality of the connection, measured as a fractional number in the range `[0.0, 1.0]`.
+
+### `socket.outbound`
+  > Returns `bool` | **readonly**
+  
+  > Whether we initiated this connection or the connection was accepted by us.

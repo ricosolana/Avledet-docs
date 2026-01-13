@@ -2,6 +2,8 @@
 
 A ZDO identity structure
 
+## Class Members
+
 ### `ZDOID.new(uuid, id)`
   > Returns `ZDOID`
 
@@ -10,10 +12,12 @@ A ZDO identity structure
 ### `ZDOID.NONE`
   > A zero ZDOID (0, 0)
   
+## Instance Members
+
 ### `zdoid.uuid`
   > Returns `Int64`
   
-  > The uuid of the zdoid as a `int64`
+  > The uuid of the zdoid as an `Int64`
   
 ### `zdoid.id`
   > Returns `number`

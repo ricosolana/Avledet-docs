@@ -10,27 +10,27 @@ They can be accessed by the name of the enum table and the enum itself:
   > `Flag.CHAIR`
   
 ### `Type`
-  > | Type        | Alias
-  > | :---------- | :-------
-  > | BOOL        |
-  > | STRING      | 
-  > | STRINGS     |
-  > | BYTES       |
-  > | ZDOID       |
-  > | VECTOR3     |
-  > | VECTOR2i    |
-  > | QUATERNION  |
-  > | INT8        |
-  > | INT16       | SHORT
-  > | INT32       | INT, HASH
-  > | INT64       | LONG
-  > | UINT8       | BYTE
-  > | UINT16      | USHORT
-  > | UINT32      | UINT
-  > | UINT64      | ULONG
-  > | FLOAT       |
-  > | DOUBLE      |
-  > | CHAR        |
+  > | Type        | Alias           | Description
+  > | :---------- | :-------------- | :----------
+  > | BOOL        |                 | 1 byte boolean
+  > | STRING      | str             | var-length encoded string
+  > | STRINGS     | strs            | array of string
+  > | BYTES       |                 | array of bytes
+  > | ZDOID       | zid             |  
+  > | VECTOR3     | vec3f           | 3 floats
+  > | VECTOR2i    | vec2i           | 2 signed ints
+  > | QUATERNION  | quat            | 4 floats
+  > | INT8        | i8              |
+  > | INT16       | SHORT, i16      |
+  > | INT32       | INT, i32, HASH  | 
+  > | INT64       | LONG, i64       |
+  > | UINT8       | BYTE, u8        |
+  > | UINT16      | USHORT, u16     |
+  > | UINT32      | UINT, u32       |
+  > | UINT64      | ULONG, u64      |
+  > | FLOAT       | f32             |
+  > | DOUBLE      | f64             |
+  > | CHAR16      | utf             | utf8 encoded character (1-3 bytes)
   
 ### `TimeOfDay`
   > | TimeOfDay   | Value      
@@ -53,39 +53,39 @@ They can be accessed by the name of the enum table and the enum itself:
 
   > | Flag          | Description
   > | :----------   | :----------
-  > | NONE          | Default flag
+  > | NONE          | 
   > | SCALE         | Send initial scale
-  > | FAR           | Is an object visible from far away
-  > | SESSIONED     | Temporary client-ZDO
-  > | PIECE         | Is a player-buildable object
+  > | DISTANT       | Is an object visible from far away
+  > | PERSISTENT    | Is a transient server object (saveable to disk)
+  > | TYPE1         | bit 1
+  > | TYPE2         | bit 2
+  > | PIECE         | Is a player placed object
   > | BED           | Is a bed
   > | DOOR          | Is a door
   > | CHAIR         | Is a chair
   > | SHIP          | Is a sailable ship
   > | FISH          | Is a swimming fish
   > | PLANT         | Is a player-plantable crop
-  > | ARMATURE      | Is an armorstand that hold items
-  > | ITEM          | Is a dropped ground item
+  > | ARMOR_STAND   | Is an armorstand that hold items
+  > | PROJECTILE    | Is a shot projectile
+  > | ITEM_DROP     | Is a dropped ground item
   > | PICKABLE      | Is a player-interactible object
-  > | PICKABLE_ITEM | Is a pickable ground item
-  > | COOKING       | Is a cooking station
-  > | CRAFTING      | Is a crafting station
-  > | SMELTING      | Is an ore-refining station
-  > | BURNING       | Is a torch or other campfire type
-  > | SUPPORT       | Is a supportable structure with strength
-  > | BREAKABLE     | Is a destructible object capable of taking damage
-  > | ATTACH        | Is a utility component that holds items in physical space
-  > | ANIMAL        | Is a passive creature
-  > | MONSTER       | Is a neutral or hostile creature
-  > | TAME          | Is a tameable creature
-  > | BREED         | Is a breedable creature
-  > | MINEABLE_OLD  | Old class type useful only for leviathan
-  > | MINEABLE      | Is a pickaxe-mineable object
-  > | TREE          | Is an upright tree
-  > | LOG           | Is a chopped down tree
-  > | SFX           | Is a temporary sound object
-  > | VFX           | Is a temporary visual effects object
-  > | AOE           | Is a temporary attack object
-  > | DUNGEON       | Is a dungeon object
-  > | PLAYER        | Is a player character
-  > | TOMBSTONE     | Is a player tombstone
+  > | PICKABLE_ITEM | Is a one-time pickable loot item
+  > | CONTAINER     | Is an inventory, most associated with chests
+  > | COOKING_STATION   | Is a cooking station
+  > | CRAFTING_STATION  | Is a crafting station
+  > | SMELTER           | Is an material refining station
+  > | FIREPLACE         | Is a torch or other campfire type
+  > | WEAR_N_TEAR       | Is a supportable structure with strength
+  > | BREAKABLE         | Is a destructible object capable of taking damage
+  > | ITEM_STAND        | Is a utility component that holds items in physical space
+  > | ANIMAL_AI         | Is a passive creature
+  > | MONSTER_AI        | Is a neutral or hostile creature
+  > | TAMEABLE          | Is a tameable creature
+  > | PROCREATION       | Is a breedable creature
+  > | MINE_ROCK_5       | Is a pickaxe-mineable object
+  > | TREE_BASE         | Is an upright tree
+  > | TREE_LOG          | Is a downed rolling tree log
+  > | DUNGEON           | Is a dungeon object
+  > | TERRAIN_MODIFIER  | Is a placed landscaping edit
+  > | CREATURE_SPAWNER  | Is a spawning creature nest

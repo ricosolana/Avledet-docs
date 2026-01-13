@@ -2,12 +2,16 @@
 
 Wrapper type for 64-bit integers because of Luas inability to support them
 
+## Class Members
+
 ### `Int64.new(...)`
   > Returns `Int64`
   
   > `Int64.new()`, `Int64.new(number)`, `Int64.new(lower, upper)`,
     `Int64.new(hexstring)`
   
+## Instance Members
+
 ### `int64:tonumber()`
   > Returns `number`
   
@@ -36,7 +40,7 @@ Wrapper type for 64-bit integers because of Luas inability to support them
 ### `int64:__unm()`
   > Returns `Int64`
   
-  > Unary minus
+  > Unary minus. Negation of the object.
   
   > `-int64`
   

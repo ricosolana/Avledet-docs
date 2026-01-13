@@ -8,51 +8,35 @@ See [the code](https://github.com/PeriodicSeizures/Valhalla/blob/fix-zdos/src/Mo
 for the actual implementation and stuff that might not
 be fully included in this documentation
 
-## API Reference format
+## sol2/lua Quirks
 
-### Accessor
-    
-The word *accessor* when used in this documentation will 
-represent either methods or fields. A method is an accessor but 
-not all accessors are methods. The same thing goes for fields, 
-which will sometimes be referred to as properties.
+- C++ bound functions which return a reference `MyObject&` will actually be copied, unless std::ref is used.
+    - such as in `NetManager.peers`, this list is effectively immutable, although its accessor function returns 
+        a direct reference `std::vector<Peer::Ptr>&`.
 
-### Uppercase
+- Although a single lua state is used for the servers scripting engine, plugins are isolated from
+    other within independent lua environments.
 
-API References which start in uppercase (i.e. `Vector2i.new()`, `ZDOID.NONE`)
-generally belong to a class.
+- To achieve true lua script-script sandboxing, stls such as debug, os (partial), and other native libraries
+    were disabled. 
 
-### Lowercase
-  
-API References which start in lowercase (i.e. `vector3.y`, `vector3:Distance(other)`)
-generally belong to a instantiated class object.
+## Documentation format
 
-### Parameter naming
+- Top-level `#` header (class name)
+- Second-level `##` header (Class / Instance section)
+- Third-level `###` header (Member name, func args)
+    - Returns following a type
+    - Description of the function and returned value (if any)
 
-| Name              | Assumed type
-| :----------       | :---------- 
-| target/uuid/owner | Int64
-| somethingHash     | number (value within int32_t)
-| other             | same class type
-| bytes             | Bytes
-| container<~>      | sol container of specified types
-| strings           | container<string\>
-| zone              | Vector2i
+See the API [Random](reference/usertypes/random/) for a good layout.
+
+The first half of a reference section will be statically callable class methods, like constructors and other global/instance independent mutators.
+
+The second half will be instance members, which must be called on an instantiated or reference object.
 
 ### Danger zone
 
-Some usertypes are unsafe to store for long periods or outside the
-scope in which they are accessed from. These objects currently are:
+The previous project, Valhalla, used some awkward techniques for "performance",
+at the sacrifice of safety. This revival project aims to make the lua api fully safe.
 
-    `Peer`     
-    `ZDO`
-
-`Peer` can be safely stored outside of any scope, but must be cleaned-up
-accordingly when a player [disconnects](http://127.0.0.1:8000/reference/managers/valhalla/#valhallasubscribename-function)
-
-`ZDO` currently has no mechanism or callback that is invoked to notify 
-the mod of zdo deletion. An alternative to storing the ZDO would be
-to use zdo.id (`ZDOID`), which are completely safe to store (unless otherwise stated).
-
-Violating any of the above will result in hard-to-diagnose problems, 
-weird stuff, or the moon falling out of orbit.
+There are still some caveats

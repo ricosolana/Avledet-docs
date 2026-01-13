@@ -15,7 +15,7 @@ Used for custom RPC or RoutedRpc registrations.
   local SIG_SleepStart = MethodSig.new('SleepStart')
   
   local SIG_Discover = MethodSig.new("DiscoverClosestLocation", 
-      Type.STRING, Type.VECTOR3, Type.STRING, Type.INT32, Type.BOOL
+      Type.str, Type.vec3f, Type.str, Type.i32, Type.BOOL
   )
   
   -- https://github.com/M4cs/Valheim-Server-RPC-Guide#our-custom-handlers
