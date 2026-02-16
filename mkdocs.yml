@@ -1,7 +1,7 @@
-site_name: Valhalla
+site_name: Avledet
 #site_url: https://ricosolana.github.io/Valhalla/
-repo_name: ricosolana/Valhalla
-repo_url: https://github.com/PeriodicSeizures/Valhalla
+repo_name: ricosolana/Avledet
+repo_url: https://github.com/ricosolana/Avledet
 
 #nav:
 #  - Home: index.md
@@ -36,7 +36,7 @@ repo_url: https://github.com/PeriodicSeizures/Valhalla
 #    - Enums: reference/enums.md
 #    - Managers: 
 #      - reference/managers.md
-#      - Valhalla: reference/managers/valhalla.md
+#      - Valhalla: reference/managers/avledet.md
 #      - PrefabManager: reference/managers/prefabmanager.md
 #      - ZDOManager: reference/managers/zdomanager.md
 #      - NetManager: reference/managers/netmanager.md
@@ -84,7 +84,7 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: https://github.com/PeriodicSeizures
+      link: https://github.com/ricosolana
 #    - icon: fontawesome/brands/twitter
 #      link: https://twitter.com/mytwitter
 #    - icon: fontawesome/brands/linkedin
@@ -125,4 +125,4 @@ plugins:
   - search
 
 copyright: |
-  &copy; 2025 <a href="https://github.com/ricosolana" target="_blank" rel="noopener">Ricardo Solana</a>
+  &copy; 2026 <a href="https://github.com/ricosolana" target="_blank" rel="noopener">Ricardo Solana</a>

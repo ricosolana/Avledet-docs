@@ -13,12 +13,12 @@ and more.
 
 World loading is fully supported with an optional legacy mode
 to support loading very old worlds. Saving is also fully functional with 
-customizeable save times and compressed rolling backups.
+customizable save times and compressed rolling backups.
 
 ### Lua API
 
 Avledet includes a feature-rich Lua API to manipulate the inner-workings 
-of the server. See the [API reference](reference/) for more details and 
+of the server. See the [API reference](reference/index.md) for more details and 
 documentation.
 
 Several already-created mods are included with Valhalla to serve as 

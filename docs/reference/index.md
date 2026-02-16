@@ -1,12 +1,26 @@
 # Reference
 
-Valhalla utilizes Lua to take advantage of many of the available 
+Avledet utilizes Lua to take advantage of many of the available 
 internal features. This is made possible with the sol Lua wrapper 
 library. 
 
-See [the code](https://github.com/PeriodicSeizures/Valhalla/blob/fix-zdos/src/ModManager.cpp#L64)
+See [the code](https://github.com/ricosolana/Avledet/blob/fix-zdos/src/ModManager.cpp#L64)
 for the actual implementation and stuff that might not
 be fully included in this documentation
+
+## Features
+
+- Dynamic script reloading (triggered on scriptInfo.yml save)
+- Scripts 100% sandboxed (same Lua state used, however globals are per-script)
+- Work-in-progress Valheim mod rewrites
+
+## Caveats
+
+- Debug library and several os functions are disabled to preserve sandboxing
+- Allowed functions:
+  - assert, error, ipairs, next, pairs, pcall, print, select, tonumber, tostring, type, unpack, _VERSION, xpcall
+  - coroutine.*, string.*, table.*, math.*
+  - os.clock, os.date, os.difftime, os.time 
 
 ## sol2/lua Quirks
 
@@ -28,7 +42,7 @@ be fully included in this documentation
     - Returns following a type
     - Description of the function and returned value (if any)
 
-See the API [Random](reference/usertypes/random/) for a good layout.
+See the API [Random](usertypes/random.md) as an example for a tidy page layout.
 
 The first half of a reference section will be statically callable class methods, like constructors and other global/instance independent mutators.
 
