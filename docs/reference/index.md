@@ -47,13 +47,11 @@ be fully included in this documentation
 
 # Shared lifetimes
 
-- You can safely assume that all objects exist within their own scope
-- Shared objects with shared lifetimes (shared/intrusive ptr):
+- All server objects accessed by Lua will outlive the script
+- Shared lifetime objects (std::shared_ptr / intrusive):
     - Peer
     - Socket
     - ZDO
-- If this means nothing to you, then no worries. Just write your 
-code as normal.
 
 !!! danger "Unsafe Code Usage"
 

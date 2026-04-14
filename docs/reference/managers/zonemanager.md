@@ -2,30 +2,34 @@
 
 Manager class for all things related to world generation.
 
-*Note: Zone / zone is a typedef for Vector2i and can be considered the same thing*
+## Class Members
 
-### `ZoneManager:GenerateZone(zone)`
+nothing here
+
+## Instance Members
+
+### `ZoneManager:populate_zone(zone: Vec2s)`
   > Forcibly generates a zone in world
   
   > Will spawn all new features and vegetation with no deletion
 
-### `ZoneManager:GetNearestFeature(name, pos)`
+### `ZoneManager:find_nearest_feature(name, pos: Vec2s)`
   > Returns `FeatureInstance` or `nil`
   
-  > Finds the nearest Feature to position with name 
+  > Finds the Feature nearest to position with the given name 
   
-### `ZoneManager:WorldToZonePos(pos)`
-  > Returns `Zone`
+### `ZoneManager:to_zone_pos(pos: Vec3f)`
+  > Returns `Vec2s`
   
   > Converts from world coordinates to zone coordinates
   
-### `ZoneManager:ZoneToWorldPos(zone)`
-  > Returns `Vector3`
+### `ZoneManager:to_world_pos(zone: Vec2s)`
+  > Returns `Vec3f`
   
   > Converts from zone coordinates to world coordinates
   
-### `ZoneManager.globalKeys`
-  > Returns `container<string>`
+### `ZoneManager.global_keys`
+  > Returns `string container` | **readonly**
   
   > The currently active global keys. 
   See [Global keys](https://valheim.fandom.com/wiki/Global_Keys)

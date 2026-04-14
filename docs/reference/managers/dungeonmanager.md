@@ -1,8 +1,16 @@
 # DungeonManager
 
-### `DungeonManager:GetDungeon(dungeonName)`
+## Class Members
+
+nothing here
+
+## Instance Members
+
+### `DungeonManager:find_dungeon(name)`
   > Returns `Dungeon` or `nil`
   
-### `DungeonManager:Generate(dungeon, pos, rot)`
-  > Generate a dungeon at position with rotation
-  
+### `DungeonManager:generate(dungeon, pos: Vec2f, rot: Quat)`
+  > Generates a dungeon in world
+
+### `DungeonManager.dungeons`
+  > Returns a container of dungeons | **readonly** 
